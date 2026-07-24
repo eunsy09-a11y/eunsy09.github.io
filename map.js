@@ -6,10 +6,22 @@
 (function (global) {
   "use strict";
 
-  // ── 좌표계 설정 ──
-  const LAT_MIN = 32.9, LAT_MAX = 38.75;
-  const LNG_MIN = 124.5, LNG_MAX = 129.75;
-  const VIEW_W = 620, VIEW_H = 820, PAD = 24;
+  // ── 좌표계 설정 (실제 해안선 데이터의 경계 상자에서 동적 계산) ──
+  const LAND_RINGS = (typeof KOREA_LAND_RINGS !== "undefined") ? KOREA_LAND_RINGS : [];
+  let latMin = 90, latMax = -90, lngMin = 180, lngMax = -180;
+  LAND_RINGS.forEach(ring => ring.forEach(([la, ln]) => {
+    if (la < latMin) latMin = la; if (la > latMax) latMax = la;
+    if (ln < lngMin) lngMin = ln; if (ln > lngMax) lngMax = ln;
+  }));
+  if (!LAND_RINGS.length) { latMin = 32.9; latMax = 38.75; lngMin = 124.5; lngMax = 129.75; }
+
+  // 데이터 경계에 여유 마진을 더해 도형이 화면 가장자리에 닿아 "잘려 보이는" 것을 방지
+  const MARGIN_RATIO = 0.07;
+  const latSpan0 = latMax - latMin, lngSpan0 = lngMax - lngMin;
+  const LAT_MIN = latMin - latSpan0 * MARGIN_RATIO, LAT_MAX = latMax + latSpan0 * MARGIN_RATIO;
+  const LNG_MIN = lngMin - lngSpan0 * MARGIN_RATIO, LNG_MAX = lngMax + lngSpan0 * MARGIN_RATIO;
+
+  const VIEW_W = 620, VIEW_H = 820, PAD = 14;
 
   const COS_MID = Math.cos(((LAT_MIN + LAT_MAX) / 2) * Math.PI / 180);
   const usableW = VIEW_W - PAD * 2, usableH = VIEW_H - PAD * 2;
@@ -26,40 +38,21 @@
     ];
   }
 
-  // 남한 해안선 — 실측 경계가 아닌 시각화용 근사(스타일라이즈) 좌표
-  const KOREA_OUTLINE = [
-    [37.85,126.60],[37.75,126.40],[37.62,126.35],[37.48,126.35],[37.20,126.35],
-    [36.98,126.30],[36.80,126.15],[36.75,126.10],[36.60,126.20],[36.40,126.35],
-    [36.15,126.45],[35.97,126.60],[35.75,126.45],[35.55,126.45],[35.35,126.35],
-    [35.15,126.35],[34.95,126.30],[34.81,126.39],[34.60,126.45],[34.35,126.55],
-    [34.45,126.75],[34.55,126.95],[34.60,127.15],[34.48,127.30],[34.60,127.45],
-    [34.75,127.50],[34.90,127.65],[34.74,127.75],[34.85,127.85],[34.95,127.95],
-    [34.95,128.15],[34.85,128.30],[34.90,128.45],[34.80,128.55],[34.75,128.70],
-    [34.85,128.75],[35.00,128.80],[35.10,128.95],[35.05,129.05],[35.18,129.20],
-    [35.30,129.25],[35.54,129.42],[35.75,129.45],[35.98,129.42],[36.05,129.40],
-    [36.30,129.40],[36.55,129.42],[36.85,129.30],[37.10,129.20],[37.45,129.13],
-    [37.75,128.95],[38.00,128.75],[38.20,128.60],[38.35,128.45],[38.30,127.90],
-    [38.25,127.30],[38.15,126.95],[37.95,126.70],
-  ];
-  const JEJU_CENTER = [33.38, 126.55];
   const CITY_LABELS = [
     ["서울", 37.62, 126.98], ["대전", 36.30, 127.20], ["대구", 35.75, 128.48],
     ["광주", 35.05, 126.72], ["부산", 35.02, 128.98], ["제주", 33.30, 126.55],
   ];
 
-  // 인접한 두 점의 중점을 지나는 2차 베지어로 모서리를 살짝 둥글리는
-  // 안전한(오버슈트 없는) 스무딩 — 각 세그먼트는 두 점의 볼록 껍질을 벗어나지 않는다.
-  function roundedPolygon(pts) {
-    const n = pts.length;
-    const mid = (a, b) => [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
-    const m0 = mid(pts[n - 1], pts[0]);
-    let d = `M ${m0[0].toFixed(2)},${m0[1].toFixed(2)} `;
-    for (let i = 0; i < n; i++) {
-      const cur = pts[i], next = pts[(i + 1) % n];
-      const m = mid(cur, next);
-      d += `Q ${cur[0].toFixed(2)},${cur[1].toFixed(2)} ${m[0].toFixed(2)},${m[1].toFixed(2)} `;
-    }
-    d += "Z";
+  // 실제 해안선(다중 폐곡선: 육지 + 섬)을 하나의 path 'd'로 합성
+  function ringsToPath(rings) {
+    let d = "";
+    rings.forEach(ring => {
+      d += `M ${ring[0][0].toFixed(2)},${ring[0][1].toFixed(2)} `;
+      for (let i = 1; i < ring.length; i++) {
+        d += `L ${ring[i][0].toFixed(2)},${ring[i][1].toFixed(2)} `;
+      }
+      d += "Z ";
+    });
     return d;
   }
 
@@ -96,16 +89,12 @@
     svg.appendChild(defs);
     svg.appendChild(el("rect", { x: 0, y: 0, width: VIEW_W, height: VIEW_H, fill: "url(#oceanGrad)" }));
 
-    // 해안선(육지) + 제주
-    const outlinePx = KOREA_OUTLINE.map(([la, ln]) => project(la, ln));
+    // 해안선(실제 지형: 육지 + 제주·거제·강화 등 부속 도서)
+    const ringsPx = LAND_RINGS.map(ring => ring.map(([la, ln]) => project(la, ln)));
     svg.appendChild(el("path", {
-      d: roundedPolygon(outlinePx),
-      fill: "url(#landGrad)", stroke: "#3b4a6b", "stroke-width": 1.4, "stroke-linejoin": "round",
-    }));
-    const [jx, jy] = project(JEJU_CENTER[0], JEJU_CENTER[1]);
-    svg.appendChild(el("ellipse", {
-      cx: jx, cy: jy, rx: 30, ry: 13, transform: `rotate(-7 ${jx} ${jy})`,
-      fill: "url(#landGrad)", stroke: "#3b4a6b", "stroke-width": 1.2,
+      d: ringsToPath(ringsPx),
+      fill: "url(#landGrad)", stroke: "#3b4a6b", "stroke-width": 1, "stroke-linejoin": "round",
+      "fill-rule": "nonzero",
     }));
 
     // 도시 라벨

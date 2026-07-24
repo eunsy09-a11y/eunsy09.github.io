@@ -1,0 +1,828 @@
+[
+{
+"id": "snu",
+"name": "서울대학교",
+"region": "서울",
+"type": "국립",
+"tier": "최상위"
+},
+{
+"id": "yonsei",
+"name": "연세대학교",
+"region": "서울",
+"type": "사립",
+"tier": "최상위"
+},
+{
+"id": "korea",
+"name": "고려대학교",
+"region": "서울",
+"type": "사립",
+"tier": "최상위"
+},
+{
+"id": "sogang",
+"name": "서강대학교",
+"region": "서울",
+"type": "사립",
+"tier": "상위"
+},
+{
+"id": "skku",
+"name": "성균관대학교",
+"region": "서울",
+"type": "사립",
+"tier": "상위"
+},
+{
+"id": "hanyang",
+"name": "한양대학교",
+"region": "서울",
+"type": "사립",
+"tier": "상위"
+},
+{
+"id": "cau",
+"name": "중앙대학교",
+"region": "서울",
+"type": "사립",
+"tier": "상위"
+},
+{
+"id": "khu",
+"name": "경희대학교",
+"region": "서울",
+"type": "사립",
+"tier": "상위"
+},
+{
+"id": "hufs",
+"name": "한국외국어대학교",
+"region": "서울",
+"type": "사립",
+"tier": "상위"
+},
+{
+"id": "uos",
+"name": "서울시립대학교",
+"region": "서울",
+"type": "국립",
+"tier": "상위"
+},
+{
+"id": "ewha",
+"name": "이화여자대학교",
+"region": "서울",
+"type": "사립",
+"tier": "상위"
+},
+{
+"id": "hongik",
+"name": "홍익대학교",
+"region": "서울",
+"type": "사립",
+"tier": "중상위"
+},
+{
+"id": "konkuk",
+"name": "건국대학교",
+"region": "서울",
+"type": "사립",
+"tier": "중상위"
+},
+{
+"id": "dongguk",
+"name": "동국대학교",
+"region": "서울",
+"type": "사립",
+"tier": "중상위"
+},
+{
+"id": "sookmyung",
+"name": "숙명여자대학교",
+"region": "서울",
+"type": "사립",
+"tier": "중상위"
+},
+{
+"id": "kookmin",
+"name": "국민대학교",
+"region": "서울",
+"type": "사립",
+"tier": "중상위"
+},
+{
+"id": "soongsil",
+"name": "숭실대학교",
+"region": "서울",
+"type": "사립",
+"tier": "중상위"
+},
+{
+"id": "sejong",
+"name": "세종대학교",
+"region": "서울",
+"type": "사립",
+"tier": "중상위"
+},
+{
+"id": "ajou",
+"name": "아주대학교",
+"region": "경기",
+"type": "사립",
+"tier": "중상위"
+},
+{
+"id": "inha",
+"name": "인하대학교",
+"region": "인천",
+"type": "사립",
+"tier": "중상위"
+},
+{
+"id": "gachon",
+"name": "가천대학교",
+"region": "경기",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "kyonggi",
+"name": "경기대학교",
+"region": "경기",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "kaist",
+"name": "KAIST",
+"region": "대전",
+"type": "국립",
+"tier": "최상위"
+},
+{
+"id": "cnu",
+"name": "충남대학교",
+"region": "대전",
+"type": "국립",
+"tier": "중상위"
+},
+{
+"id": "cbnu",
+"name": "충북대학교",
+"region": "충북",
+"type": "국립",
+"tier": "중위"
+},
+{
+"id": "kongju",
+"name": "공주대학교",
+"region": "충남",
+"type": "국립",
+"tier": "중위"
+},
+{
+"id": "pnu",
+"name": "부산대학교",
+"region": "부산",
+"type": "국립",
+"tier": "중상위"
+},
+{
+"id": "knu",
+"name": "경북대학교",
+"region": "대구",
+"type": "국립",
+"tier": "중상위"
+},
+{
+"id": "pknu",
+"name": "부경대학교",
+"region": "부산",
+"type": "국립",
+"tier": "중위"
+},
+{
+"id": "dau",
+"name": "동아대학교",
+"region": "부산",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "gnu",
+"name": "경상국립대학교",
+"region": "경남",
+"type": "국립",
+"tier": "중위"
+},
+{
+"id": "ulsan",
+"name": "울산대학교",
+"region": "울산",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "jnu",
+"name": "전남대학교",
+"region": "광주",
+"type": "국립",
+"tier": "중상위"
+},
+{
+"id": "jbnu",
+"name": "전북대학교",
+"region": "전북",
+"type": "국립",
+"tier": "중상위"
+},
+{
+"id": "chosun",
+"name": "조선대학교",
+"region": "광주",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "kangwon",
+"name": "강원대학교",
+"region": "강원",
+"type": "국립",
+"tier": "중위"
+},
+{
+"id": "jejunu",
+"name": "제주대학교",
+"region": "제주",
+"type": "국립",
+"tier": "중위"
+},
+{
+"id": "postech",
+"name": "POSTECH",
+"region": "경북",
+"type": "사립",
+"tier": "최상위"
+},
+{
+"id": "gist",
+"name": "GIST(광주과학기술원)",
+"region": "광주",
+"type": "국립",
+"tier": "최상위"
+},
+{
+"id": "unist",
+"name": "UNIST",
+"region": "울산",
+"type": "국립",
+"tier": "최상위"
+},
+{
+"id": "dgist",
+"name": "DGIST",
+"region": "대구",
+"type": "국립",
+"tier": "최상위"
+},
+{
+"id": "seoultech",
+"name": "서울과학기술대학교",
+"region": "서울",
+"type": "국립",
+"tier": "중상위"
+},
+{
+"id": "kw",
+"name": "광운대학교",
+"region": "서울",
+"type": "사립",
+"tier": "중상위"
+},
+{
+"id": "mju",
+"name": "명지대학교",
+"region": "서울",
+"type": "사립",
+"tier": "중상위"
+},
+{
+"id": "duksung",
+"name": "덕성여자대학교",
+"region": "서울",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "dongduk",
+"name": "동덕여자대학교",
+"region": "서울",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "sangmyung",
+"name": "상명대학교",
+"region": "서울",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "sungshin",
+"name": "성신여자대학교",
+"region": "서울",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "swu",
+"name": "서울여자대학교",
+"region": "서울",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "hansung",
+"name": "한성대학교",
+"region": "서울",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "seokyung",
+"name": "서경대학교",
+"region": "서울",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "samyook",
+"name": "삼육대학교",
+"region": "서울",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "chongshin",
+"name": "총신대학교",
+"region": "서울",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "cuk",
+"name": "가톨릭대학교",
+"region": "경기",
+"type": "사립",
+"tier": "상위"
+},
+{
+"id": "dankook",
+"name": "단국대학교(죽전)",
+"region": "경기",
+"type": "사립",
+"tier": "중상위"
+},
+{
+"id": "inu",
+"name": "인천대학교",
+"region": "인천",
+"type": "국립",
+"tier": "중상위"
+},
+{
+"id": "hyu_erica",
+"name": "한양대학교 ERICA",
+"region": "경기",
+"type": "사립",
+"tier": "중상위"
+},
+{
+"id": "kau",
+"name": "한국항공대학교",
+"region": "경기",
+"type": "사립",
+"tier": "중상위"
+},
+{
+"id": "suwon",
+"name": "수원대학교",
+"region": "경기",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "hanshin",
+"name": "한신대학교",
+"region": "경기",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "hyupsung",
+"name": "협성대학교",
+"region": "경기",
+"type": "사립",
+"tier": "중하위"
+},
+{
+"id": "shinhan",
+"name": "신한대학교",
+"region": "경기",
+"type": "사립",
+"tier": "중하위"
+},
+{
+"id": "daejin",
+"name": "대진대학교",
+"region": "경기",
+"type": "사립",
+"tier": "중하위"
+},
+{
+"id": "ptu",
+"name": "평택대학교",
+"region": "경기",
+"type": "사립",
+"tier": "중하위"
+},
+{
+"id": "anyang",
+"name": "안양대학교",
+"region": "경기",
+"type": "사립",
+"tier": "중하위"
+},
+{
+"id": "sungkyul",
+"name": "성결대학교",
+"region": "경기",
+"type": "사립",
+"tier": "중하위"
+},
+{
+"id": "nue_seoul",
+"name": "서울교육대학교",
+"region": "서울",
+"type": "국립",
+"tier": "상위"
+},
+{
+"id": "nue_gyeongin",
+"name": "경인교육대학교",
+"region": "경기",
+"type": "국립",
+"tier": "중상위"
+},
+{
+"id": "nue_chuncheon",
+"name": "춘천교육대학교",
+"region": "강원",
+"type": "국립",
+"tier": "중상위"
+},
+{
+"id": "nue_cheongju",
+"name": "청주교육대학교",
+"region": "충북",
+"type": "국립",
+"tier": "중상위"
+},
+{
+"id": "nue_gongju",
+"name": "공주교육대학교",
+"region": "충남",
+"type": "국립",
+"tier": "중상위"
+},
+{
+"id": "nue_jeonju",
+"name": "전주교육대학교",
+"region": "전북",
+"type": "국립",
+"tier": "중상위"
+},
+{
+"id": "nue_gwangju",
+"name": "광주교육대학교",
+"region": "광주",
+"type": "국립",
+"tier": "중상위"
+},
+{
+"id": "nue_daegu",
+"name": "대구교육대학교",
+"region": "대구",
+"type": "국립",
+"tier": "중상위"
+},
+{
+"id": "nue_busan",
+"name": "부산교육대학교",
+"region": "부산",
+"type": "국립",
+"tier": "중상위"
+},
+{
+"id": "nue_jinju",
+"name": "진주교육대학교",
+"region": "경남",
+"type": "국립",
+"tier": "중위"
+},
+{
+"id": "knue",
+"name": "한국교원대학교",
+"region": "충북",
+"type": "국립",
+"tier": "상위"
+},
+{
+"id": "hanbat",
+"name": "한밭대학교",
+"region": "대전",
+"type": "국립",
+"tier": "중위"
+},
+{
+"id": "mokwon",
+"name": "목원대학교",
+"region": "대전",
+"type": "사립",
+"tier": "중하위"
+},
+{
+"id": "paichai",
+"name": "배재대학교",
+"region": "대전",
+"type": "사립",
+"tier": "중하위"
+},
+{
+"id": "woosong",
+"name": "우송대학교",
+"region": "대전",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "hannam",
+"name": "한남대학교",
+"region": "대전",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "konyang",
+"name": "건양대학교",
+"region": "대전",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "sch",
+"name": "순천향대학교",
+"region": "충남",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "dankook_cheonan",
+"name": "단국대학교(천안)",
+"region": "충남",
+"type": "사립",
+"tier": "중상위"
+},
+{
+"id": "hoseo",
+"name": "호서대학교",
+"region": "충남",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "cju",
+"name": "청주대학교",
+"region": "충북",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "semyung",
+"name": "세명대학교",
+"region": "충북",
+"type": "사립",
+"tier": "중하위"
+},
+{
+"id": "ut_chungju",
+"name": "한국교통대학교",
+"region": "충북",
+"type": "국립",
+"tier": "중위"
+},
+{
+"id": "yonsei_wonju",
+"name": "연세대학교 미래캠퍼스",
+"region": "강원",
+"type": "사립",
+"tier": "상위"
+},
+{
+"id": "gwnu",
+"name": "강릉원주대학교",
+"region": "강원",
+"type": "국립",
+"tier": "중위"
+},
+{
+"id": "hallym",
+"name": "한림대학교",
+"region": "강원",
+"type": "사립",
+"tier": "중상위"
+},
+{
+"id": "sangji",
+"name": "상지대학교",
+"region": "강원",
+"type": "사립",
+"tier": "중하위"
+},
+{
+"id": "cku",
+"name": "가톨릭관동대학교",
+"region": "강원",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "keimyung",
+"name": "계명대학교",
+"region": "대구",
+"type": "사립",
+"tier": "중상위"
+},
+{
+"id": "cu_daegu",
+"name": "대구가톨릭대학교",
+"region": "경북",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "daegu_univ",
+"name": "대구대학교",
+"region": "경북",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "dhu",
+"name": "대구한의대학교",
+"region": "경북",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "yeungnam",
+"name": "영남대학교",
+"region": "경북",
+"type": "사립",
+"tier": "중상위"
+},
+{
+"id": "andong",
+"name": "안동대학교",
+"region": "경북",
+"type": "국립",
+"tier": "중위"
+},
+{
+"id": "kumoh",
+"name": "금오공과대학교",
+"region": "경북",
+"type": "국립",
+"tier": "중상위"
+},
+{
+"id": "handong",
+"name": "한동대학교",
+"region": "경북",
+"type": "사립",
+"tier": "상위"
+},
+{
+"id": "bufs",
+"name": "부산외국어대학교",
+"region": "부산",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "tu_dongmyung",
+"name": "동명대학교",
+"region": "부산",
+"type": "사립",
+"tier": "중하위"
+},
+{
+"id": "silla",
+"name": "신라대학교",
+"region": "부산",
+"type": "사립",
+"tier": "중하위"
+},
+{
+"id": "cup",
+"name": "부산가톨릭대학교",
+"region": "부산",
+"type": "사립",
+"tier": "중하위"
+},
+{
+"id": "kosin",
+"name": "고신대학교",
+"region": "부산",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "kyungsung",
+"name": "경성대학교",
+"region": "부산",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "inje",
+"name": "인제대학교",
+"region": "경남",
+"type": "사립",
+"tier": "중상위"
+},
+{
+"id": "changwon",
+"name": "창원대학교",
+"region": "경남",
+"type": "국립",
+"tier": "중위"
+},
+{
+"id": "kyungnam",
+"name": "경남대학교",
+"region": "경남",
+"type": "사립",
+"tier": "중하위"
+},
+{
+"id": "honam",
+"name": "호남대학교",
+"region": "광주",
+"type": "사립",
+"tier": "중하위"
+},
+{
+"id": "mokpo",
+"name": "목포대학교",
+"region": "전남",
+"type": "국립",
+"tier": "중위"
+},
+{
+"id": "sunchon",
+"name": "순천대학교",
+"region": "전남",
+"type": "국립",
+"tier": "중위"
+},
+{
+"id": "mmu",
+"name": "목포해양대학교",
+"region": "전남",
+"type": "국립",
+"tier": "중위"
+},
+{
+"id": "wku",
+"name": "원광대학교",
+"region": "전북",
+"type": "사립",
+"tier": "중위"
+},
+{
+"id": "woosuk",
+"name": "우석대학교",
+"region": "전북",
+"type": "사립",
+"tier": "중하위"
+},
+{
+"id": "jeonju_univ",
+"name": "전주대학교",
+"region": "전북",
+"type": "사립",
+"tier": "중위"
+}
+]
