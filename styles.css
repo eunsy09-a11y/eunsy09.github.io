@@ -72,10 +72,11 @@ aside.sidebar {
 .sidebar .search {
   padding: 14px;
   border-bottom: 1px solid var(--line);
+  position: relative;
 }
 .sidebar .search input {
   width: 100%;
-  padding: 10px 12px;
+  padding: 10px 34px 10px 12px;
   border-radius: 10px;
   border: 1px solid var(--line);
   background: var(--panel-2);
@@ -84,6 +85,24 @@ aside.sidebar {
   outline: none;
 }
 .sidebar .search input:focus { border-color: var(--accent); }
+.search-clear {
+  position: absolute; right: 22px; top: 50%; transform: translateY(-50%);
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--panel-2); border: 1px solid var(--line); color: var(--muted);
+  font-size: 11px; cursor: pointer; display: none; align-items: center; justify-content: center;
+}
+.search-clear.show { display: flex; }
+.search-clear:hover { color: var(--text); border-color: var(--accent); }
+
+.result-count {
+  padding: 8px 14px 0; font-size: 11px; color: var(--muted);
+}
+.match-hint {
+  font-size: 11px; color: var(--accent-2); margin-top: 2px;
+}
+mark {
+  background: rgba(79,140,255,.35); color: var(--text); border-radius: 3px; padding: 0 1px;
+}
 .filter-row {
   display: flex; gap: 6px; flex-wrap: wrap;
   padding: 10px 14px;
@@ -111,13 +130,22 @@ aside.sidebar {
 .uni-item .sub { font-size: 11px; color: var(--muted); }
 .list-empty { color: var(--muted); text-align: center; padding: 30px 10px; font-size: 13px; }
 
-/* 이니셜 뱃지(로고) */
+/* 이니셜 뱃지(엠블럼 로고) — 실제 로고 이미지 대신 이니셜 기반 엠블럼.
+   외부 이미지에 의존하지 않아 오프라인에서도 항상 동일하게 보이고,
+   상표권이 있는 실제 학교 로고를 무단 사용하지 않기 위한 선택. */
 .badge-sm, .badge-lg {
   display: flex; align-items: center; justify-content: center;
-  border-radius: 50%; color: #0b1220; font-weight: 800; flex-shrink: 0;
+  border-radius: 50%; color: #fff; font-weight: 800; flex-shrink: 0;
+  position: relative;
+  background-image: radial-gradient(circle at 32% 26%, rgba(255,255,255,.65), rgba(255,255,255,0) 58%);
+  background-blend-mode: overlay;
+  box-shadow: inset 0 -3px 6px rgba(0,0,0,.30), inset 0 1px 2px rgba(255,255,255,.35), 0 2px 6px rgba(0,0,0,.35);
+  border: 1.5px solid rgba(255,255,255,.18);
+  text-shadow: 0 1px 3px rgba(0,0,0,.45);
+  letter-spacing: -.5px;
 }
 .badge-sm { width: 30px; height: 30px; font-size: 13px; }
-.badge-lg { width: 52px; height: 52px; font-size: 21px; }
+.badge-lg { width: 54px; height: 54px; font-size: 22px; border-width: 2px; }
 
 .icon-btn.star {
   background: transparent; border: none; cursor: pointer;

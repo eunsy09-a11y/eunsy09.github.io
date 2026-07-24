@@ -82,26 +82,50 @@ let activeId = null;
 
 function badgeChar(name) { return name.trim().charAt(0); }
 
+function escapeHtml(s) {
+  return s.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+function highlight(text, q) {
+  if (!q) return escapeHtml(text);
+  const idx = text.toLowerCase().indexOf(q);
+  if (idx === -1) return escapeHtml(text);
+  return escapeHtml(text.slice(0, idx)) + "<mark>" + escapeHtml(text.slice(idx, idx + q.length)) + "</mark>" + escapeHtml(text.slice(idx + q.length));
+}
+
 function renderList() {
   const q = searchEl.value.trim().toLowerCase();
+  const clearBtn = document.getElementById("searchClear");
+  if (clearBtn) clearBtn.classList.toggle("show", !!q);
+
   const items = UNIVERSITIES.filter(u => {
     const okRegion = activeRegion === "전체" || u.region === activeRegion;
-    const okQuery = !q || u.name.toLowerCase().includes(q) ||
-      u.majors.some(mj => mj.name.toLowerCase().includes(q));
+    const nameHit = u.name.toLowerCase().includes(q);
+    const majorHit = u.majors.some(mj => mj.name.toLowerCase().includes(q));
+    const okQuery = !q || nameHit || majorHit;
     const okFav = !favoritesOnly || isFavorite(u.id);
     return okRegion && okQuery && okFav;
+  }).map(u => {
+    const matchedMajor = q && !u.name.toLowerCase().includes(q)
+      ? u.majors.find(mj => mj.name.toLowerCase().includes(q))
+      : null;
+    return { u, matchedMajor };
   });
 
+  document.getElementById("resultCount").textContent = q || activeRegion !== "전체" || favoritesOnly
+    ? `${items.length}개 대학`
+    : `전체 ${items.length}개 대학`;
+
   if (!items.length) {
-    listEl.innerHTML = `<div class="list-empty">검색 결과가 없습니다.</div>`;
+    listEl.innerHTML = `<div class="list-empty">🔍 "${escapeHtml(searchEl.value)}"에 대한 검색 결과가 없습니다.<br>대학명이나 학과명으로 검색해보세요.</div>`;
     return;
   }
-  listEl.innerHTML = items.map(u => `
+  listEl.innerHTML = items.map(({ u, matchedMajor }) => `
     <div class="uni-item ${u.id === activeId ? "active" : ""}" data-id="${u.id}">
       <div class="badge-sm" style="background:${TIER_COLOR[u.tier]}">${badgeChar(u.name)}</div>
       <div class="meta">
-        <div class="nm">${u.name}</div>
+        <div class="nm">${highlight(u.name, q)}</div>
         <div class="sub">${u.region} · ${u.type} · ${u.tier}</div>
+        ${matchedMajor ? `<div class="match-hint">→ ${highlight(matchedMajor.name, q)}</div>` : ""}
       </div>
       <button class="icon-btn star ${isFavorite(u.id) ? "on" : ""}" data-fav="${u.id}" title="즐겨찾기">${isFavorite(u.id) ? "★" : "☆"}</button>
     </div>`).join("");
@@ -135,6 +159,16 @@ filterRow.querySelectorAll("[data-region]").forEach(c =>
   }));
 
 searchEl.addEventListener("input", renderList);
+searchEl.addEventListener("keydown", (e) => {
+  if (e.key !== "Enter") return;
+  const first = listEl.querySelector(".uni-item");
+  if (first) selectUni(first.dataset.id);
+});
+document.getElementById("searchClear").addEventListener("click", () => {
+  searchEl.value = "";
+  renderList();
+  searchEl.focus();
+});
 
 /* ---------------- 대학 선택 → 상세 패널 ---------------- */
 function selectUni(id) {

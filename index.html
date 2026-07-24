@@ -19,9 +19,11 @@
     <!-- 사이드바 -->
     <aside class="sidebar">
       <div class="search">
-        <input id="search" type="text" placeholder="🔍 대학명 · 학과 검색 (예: 컴퓨터, 의예)" />
+        <input id="search" type="text" placeholder="🔍 대학명 · 학과 검색 (예: 컴퓨터, 의예)" autocomplete="off" />
+        <button id="searchClear" class="search-clear" title="지우기">✕</button>
       </div>
       <div class="filter-row" id="filterRow"></div>
+      <div class="result-count" id="resultCount"></div>
       <div class="uni-list" id="uniList"></div>
     </aside>
 
