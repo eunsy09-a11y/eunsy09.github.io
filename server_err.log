@@ -1,0 +1,17 @@
+::1 - - [24/Jul/2026 14:28:33] "GET /index.html HTTP/1.1" 200 -
+::1 - - [24/Jul/2026 14:28:43] "GET /index.html HTTP/1.1" 200 -
+::1 - - [24/Jul/2026 14:28:43] "GET /styles.css HTTP/1.1" 200 -
+::1 - - [24/Jul/2026 14:28:43] "GET /data.js HTTP/1.1" 200 -
+::1 - - [24/Jul/2026 14:28:43] "GET /map.js HTTP/1.1" 200 -
+::1 - - [24/Jul/2026 14:28:43] "GET /app.js HTTP/1.1" 200 -
+::1 - - [24/Jul/2026 14:28:43] "GET /korea-geo.js HTTP/1.1" 200 -
+::1 - - [24/Jul/2026 14:28:44] code 404, message File not found
+::1 - - [24/Jul/2026 14:28:44] "GET /favicon.ico HTTP/1.1" 404 -
+::1 - - [24/Jul/2026 14:29:07] "GET /index.html HTTP/1.1" 200 -
+::1 - - [24/Jul/2026 14:29:07] "GET /styles.css HTTP/1.1" 200 -
+::1 - - [24/Jul/2026 14:29:07] "GET /data.js HTTP/1.1" 200 -
+::1 - - [24/Jul/2026 14:29:07] "GET /korea-geo.js HTTP/1.1" 200 -
+::1 - - [24/Jul/2026 14:29:07] "GET /map.js HTTP/1.1" 200 -
+::1 - - [24/Jul/2026 14:29:07] "GET /app.js HTTP/1.1" 200 -
+::1 - - [24/Jul/2026 14:29:07] code 404, message File not found
+::1 - - [24/Jul/2026 14:29:07] "GET /favicon.ico HTTP/1.1" 404 -
