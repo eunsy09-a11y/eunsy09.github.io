@@ -47,18 +47,19 @@
     ["광주", 35.05, 126.72], ["부산", 35.02, 128.98], ["제주", 33.30, 126.55],
   ];
 
-  function catmullRom(pts, closed) {
+  // 인접한 두 점의 중점을 지나는 2차 베지어로 모서리를 살짝 둥글리는
+  // 안전한(오버슈트 없는) 스무딩 — 각 세그먼트는 두 점의 볼록 껍질을 벗어나지 않는다.
+  function roundedPolygon(pts) {
     const n = pts.length;
-    const get = i => pts[((i % n) + n) % n];
-    let d = `M ${pts[0][0].toFixed(2)},${pts[0][1].toFixed(2)} `;
-    const count = closed ? n : n - 1;
-    for (let i = 0; i < count; i++) {
-      const p0 = get(i - 1), p1 = get(i), p2 = get(i + 1), p3 = get(i + 2);
-      const c1x = p1[0] + (p2[0] - p0[0]) / 6, c1y = p1[1] + (p2[1] - p0[1]) / 6;
-      const c2x = p2[0] - (p3[0] - p1[0]) / 6, c2y = p2[1] - (p3[1] - p1[1]) / 6;
-      d += `C ${c1x.toFixed(2)},${c1y.toFixed(2)} ${c2x.toFixed(2)},${c2y.toFixed(2)} ${p2[0].toFixed(2)},${p2[1].toFixed(2)} `;
+    const mid = (a, b) => [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
+    const m0 = mid(pts[n - 1], pts[0]);
+    let d = `M ${m0[0].toFixed(2)},${m0[1].toFixed(2)} `;
+    for (let i = 0; i < n; i++) {
+      const cur = pts[i], next = pts[(i + 1) % n];
+      const m = mid(cur, next);
+      d += `Q ${cur[0].toFixed(2)},${cur[1].toFixed(2)} ${m[0].toFixed(2)},${m[1].toFixed(2)} `;
     }
-    if (closed) d += "Z";
+    d += "Z";
     return d;
   }
 
@@ -84,13 +85,13 @@
     // 배경 해양 그라데이션
     const defs = el("defs", {});
     defs.innerHTML = `
-      <radialGradient id="oceanGrad" cx="50%" cy="35%" r="75%">
-        <stop offset="0%" stop-color="#132038"/>
-        <stop offset="100%" stop-color="#0b1220"/>
+      <radialGradient id="oceanGrad" cx="50%" cy="35%" r="80%">
+        <stop offset="0%" stop-color="#1c3358"/>
+        <stop offset="100%" stop-color="#0e1b30"/>
       </radialGradient>
       <linearGradient id="landGrad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#22304d"/>
-        <stop offset="100%" stop-color="#1a2740"/>
+        <stop offset="0%" stop-color="#28395c"/>
+        <stop offset="100%" stop-color="#1e2c48"/>
       </linearGradient>`;
     svg.appendChild(defs);
     svg.appendChild(el("rect", { x: 0, y: 0, width: VIEW_W, height: VIEW_H, fill: "url(#oceanGrad)" }));
@@ -98,7 +99,7 @@
     // 해안선(육지) + 제주
     const outlinePx = KOREA_OUTLINE.map(([la, ln]) => project(la, ln));
     svg.appendChild(el("path", {
-      d: catmullRom(outlinePx, true),
+      d: roundedPolygon(outlinePx),
       fill: "url(#landGrad)", stroke: "#3b4a6b", "stroke-width": 1.4, "stroke-linejoin": "round",
     }));
     const [jx, jy] = project(JEJU_CENTER[0], JEJU_CENTER[1]);
@@ -134,7 +135,6 @@
         c.setAttribute("r", (BASE_R[id] || 6) * factor);
         c.setAttribute("stroke-width", BASE_SW * factor);
       }
-      labelLayer.setAttribute("transform", `scale(1)`); // 라벨은 지도와 함께 확대(자연스러움)
     }
     applyViewBox();
 

@@ -310,7 +310,6 @@ const compareBar = document.getElementById("compareBar");
 const compareModal = document.getElementById("compareModal");
 
 function renderCompareBar() {
-  UNIVERSITIES.forEach(u => {}); // no-op guard
   if (compareIds.length === 0) { compareBar.classList.remove("show"); return; }
   compareBar.classList.add("show");
   const names = compareIds.map(id => UNIVERSITIES.find(u => u.id === id)).filter(Boolean);

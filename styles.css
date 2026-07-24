@@ -127,7 +127,7 @@ aside.sidebar {
 
 /* ── 지도 ── */
 main.map-wrap { grid-area: map; position: relative; }
-#map { width: 100%; height: 100%; background: #0b0f18; }
+#map { width: 100%; height: 100%; background: #060a13; }
 .map-legend {
   position: absolute; left: 14px; bottom: 14px; z-index: 500;
   background: rgba(23,30,46,.92); border: 1px solid var(--line);
@@ -194,7 +194,8 @@ main.map-wrap { grid-area: map; position: relative; }
   color: var(--muted); cursor: pointer; font-size: 16px;
 }
 .detail-head .close:hover { color: var(--text); border-color: var(--accent); }
-.detail-head h2 { margin: 0 0 6px; font-size: 22px; letter-spacing: -.5px; }
+.detail-head .head-row { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.detail-head h2 { margin: 0 0 6px; font-size: 21px; letter-spacing: -.5px; }
 .detail-head .tags { display: flex; gap: 6px; flex-wrap: wrap; }
 .tag {
   font-size: 11px; padding: 3px 9px; border-radius: 999px;
@@ -202,6 +203,16 @@ main.map-wrap { grid-area: map; position: relative; }
 }
 .tag.type-국립 { color: #7fd4ff; border-color: #26506b; background: #12283a; }
 .tag.type-사립 { color: #ffb0c8; border-color: #6b2640; background: #341423; }
+
+.detail-actions { display: flex; gap: 8px; }
+.action-btn {
+  flex: 1; padding: 9px 10px; font-size: 13px; font-weight: 600;
+  border-radius: 9px; border: 1px solid var(--line); background: var(--panel-2);
+  color: var(--muted); cursor: pointer; transition: .15s;
+}
+.action-btn:hover { border-color: var(--accent); color: var(--text); }
+.action-btn.on { background: rgba(255,180,84,.14); border-color: var(--warn); color: var(--warn); }
+.action-btn.on:hover { color: var(--warn); }
 
 /* 탭 */
 .tabs { display: flex; gap: 2px; padding: 0 14px; border-bottom: 1px solid var(--line); }
@@ -278,6 +289,68 @@ main.map-wrap { grid-area: map; position: relative; }
   text-align: center; padding: 20px;
 }
 .empty-state .em { font-size: 46px; margin-bottom: 12px; }
+
+/* ── 비교하기 바 ── */
+.compare-bar {
+  position: absolute; left: 50%; bottom: -80px; transform: translateX(-50%);
+  z-index: 700; display: flex; align-items: center; gap: 16px;
+  background: rgba(23,30,46,.95); border: 1px solid var(--line); border-radius: 14px;
+  padding: 10px 16px; box-shadow: var(--shadow); backdrop-filter: blur(8px);
+  transition: bottom .25s ease; max-width: 92vw;
+}
+.compare-bar.show { bottom: 18px; }
+.cmp-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.cmp-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--panel-2); border: 1px solid var(--line); border-radius: 999px;
+  padding: 5px 6px 5px 12px; font-size: 12px;
+}
+.cmp-chip button {
+  background: transparent; border: none; color: var(--muted); cursor: pointer;
+  width: 18px; height: 18px; border-radius: 50%; font-size: 11px;
+}
+.cmp-chip button:hover { background: var(--danger); color: #fff; }
+.cmp-actions { display: flex; gap: 8px; flex-shrink: 0; }
+.cmp-actions button {
+  padding: 8px 14px; border-radius: 9px; font-size: 13px; font-weight: 600;
+  border: 1px solid var(--accent); background: var(--accent); color: #fff; cursor: pointer;
+}
+.cmp-actions button:disabled { opacity: .4; cursor: not-allowed; }
+.cmp-actions button.ghost { background: transparent; color: var(--muted); border-color: var(--line); }
+.cmp-actions button.ghost:hover { color: var(--text); border-color: var(--accent); }
+
+/* ── 비교 모달 ── */
+.cmp-modal {
+  position: fixed; inset: 0; z-index: 2000; display: none;
+  background: rgba(6,9,16,.65); backdrop-filter: blur(3px);
+  align-items: center; justify-content: center; padding: 24px;
+}
+.cmp-modal.open { display: flex; }
+.cmp-modal-inner {
+  background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: var(--shadow); max-width: 900px; width: 100%; max-height: 85vh;
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.cmp-modal-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px; border-bottom: 1px solid var(--line);
+}
+.cmp-modal-head h3 { margin: 0; font-size: 18px; }
+.cmp-modal-head .close {
+  width: 30px; height: 30px; border-radius: 8px; border: 1px solid var(--line);
+  background: var(--panel-2); color: var(--muted); cursor: pointer;
+}
+.cmp-modal-head .close:hover { color: var(--text); border-color: var(--accent); }
+.cmp-table-wrap { overflow: auto; padding: 16px 20px 20px; }
+.cmp-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.cmp-table th, .cmp-table td {
+  padding: 10px 14px; border-bottom: 1px solid var(--line);
+  text-align: center; white-space: nowrap;
+}
+.cmp-table th { font-size: 13px; font-weight: 700; }
+.cmp-table td.rowlabel {
+  text-align: left; color: var(--muted); font-weight: 600; white-space: nowrap;
+}
 
 /* 반응형 */
 @media (max-width: 820px) {
